@@ -1,5 +1,9 @@
 # pylint: disable=C0103,C0114,C0115,C0116
+"""
+Script principal
+"""
 import pwinput as pw
+import janela.gui as gui
 
 palavra_secreta = pw.pwinput(prompt = 'Digite a palavra secreta: ')
 chances = 3
