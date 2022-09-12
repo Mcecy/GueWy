@@ -1,44 +1,45 @@
-# pylint: disable=C0103,C0114,C0115,C0116
-"""
-Script principal
-"""
+# from tkinter import Tk, Canvas, Entry, Frame, Text
+# import sys
 import pwinput as pw
-import janela.gui as gui
+# import keyboard
 
-palavra_secreta = pw.pwinput(prompt = 'Digite a palavra secreta: ')
-chances = 3
-digitadas = []
 
-while True:
-    if chances <= 0:
-        print('Você perdeu!')
-        break
+class hangman:
 
-    guess = input('Digite uma letra: ')
+    palavra_secreta = pw.pwinput(prompt='Digite a palavra secreta: ')
+    chances = 7
+    digitadas = []
 
-    if len(guess) > 1:
-        print('Não vale, digite só uma letra.')
-        continue
+    while True:
+        if chances <= 0:
+            print('Você perdeu!')
+            break
 
-    digitadas.append(guess)
+        guess = input('Digite uma letra: ')
 
-    palavra = ''
+        if len(guess) > 1:
+            print('Não vale, digite só uma letra.')
+            continue
 
-    if guess not in palavra_secreta:
-        chances -= 1
-        print(f'Não foi dessa vez. Você tem {chances} chances.')
-        digitadas.pop()
-    else:
-        print('Muito bem! Você acertou!')
+        digitadas.append(guess)
 
-    for letra in palavra_secreta:
-        if letra in digitadas:
-            palavra += letra
+        palavra = ''
+
+        if guess not in palavra_secreta:
+            chances -= 1
+            print(f'Não foi dessa vez. Você tem {chances} chances.')
+            digitadas.pop()
         else:
-            palavra += '*'
+            print('Muito bem! Você acertou!')
 
-    print(palavra)
+        for letra in palavra_secreta:
+            if letra in digitadas:
+                palavra += letra
+            else:
+                palavra += '*'
 
-    if palavra == palavra_secreta:
-        print(f'Você ganhou! A palavra era {palavra_secreta}.')
-        break
+        print(palavra)
+
+        if palavra == palavra_secreta:
+            print(f'Você ganhou! A palavra era {palavra_secreta}.')
+            break
